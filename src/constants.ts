@@ -41,9 +41,7 @@ export const SKELETON_PAIRINGS = [
 
 /** Default virtual module IDs */
 export const DEFAULT_VIRTUAL_MODULE_IDS = {
-  css: 'virtual:skeleton-colors',
-  oklchMap: 'virtual:oklch-rgb-map',
-  pulsing: 'virtual:pixelwise-pulsing'
+  css: 'virtual:skeleton-colors'
 } as const;
 
 /** Default theme file paths to scan */
@@ -63,7 +61,6 @@ export const DEFAULT_CONFIG: ResolvedConfig = {
   usePairingTokens: true,
   debug: false,
   virtualModuleIds: { ...DEFAULT_VIRTUAL_MODULE_IDS },
-  pulsingModulePath: null,
   themePaths: [...DEFAULT_THEME_PATHS]
 };
 
@@ -77,11 +74,8 @@ export function resolveConfig(config: SkeletonColorConfig = {}): ResolvedConfig 
     usePairingTokens: config.usePairingTokens ?? DEFAULT_CONFIG.usePairingTokens,
     debug: config.debug ?? DEFAULT_CONFIG.debug,
     virtualModuleIds: {
-      css: config.virtualModuleIds?.css ?? DEFAULT_VIRTUAL_MODULE_IDS.css,
-      oklchMap: config.virtualModuleIds?.oklchMap ?? DEFAULT_VIRTUAL_MODULE_IDS.oklchMap,
-      pulsing: config.virtualModuleIds?.pulsing ?? DEFAULT_VIRTUAL_MODULE_IDS.pulsing
+      css: config.virtualModuleIds?.css ?? DEFAULT_VIRTUAL_MODULE_IDS.css
     },
-    pulsingModulePath: config.pulsingModulePath ?? null,
     themePaths: config.themePaths ?? DEFAULT_THEME_PATHS
   };
 }

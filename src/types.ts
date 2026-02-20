@@ -36,13 +36,7 @@ export interface SkeletonColorConfig {
   virtualModuleIds?: {
     /** CSS module ID (default: 'virtual:skeleton-colors') */
     css?: string;
-    /** OKLCH→RGB map module ID (default: 'virtual:oklch-rgb-map') */
-    oklchMap?: string;
-    /** Pulsing engine module ID (default: 'virtual:pixelwise-pulsing') */
-    pulsing?: string;
   };
-  /** Path to pixelwise pulsing module source (for custom implementations) */
-  pulsingModulePath?: string;
   /** Paths to scan for theme files (default: ['src/lib/styles/themes', 'src/lib/styles/tokens', 'src/styles']) */
   themePaths?: string[];
 }
@@ -51,12 +45,9 @@ export interface SkeletonColorConfig {
 export type PrecomputedColorMap = Record<string, [number, number, number]>;
 
 /** Internal resolved configuration */
-export interface ResolvedConfig extends Required<Omit<SkeletonColorConfig, 'virtualModuleIds' | 'pulsingModulePath' | 'themePaths'>> {
+export interface ResolvedConfig extends Required<Omit<SkeletonColorConfig, 'virtualModuleIds' | 'themePaths'>> {
   virtualModuleIds: {
     css: string;
-    oklchMap: string;
-    pulsing: string;
   };
-  pulsingModulePath: string | null;
   themePaths: string[];
 }

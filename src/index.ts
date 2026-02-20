@@ -45,7 +45,6 @@ export type {
 // Utility exports (for advanced usage)
 export { parseUtilityClass, getClosestSkeletonPairing, extractUtilityClasses } from './parser.js';
 export { getCSSProperty, escapeClassName, generatePairingCSS, generateSeparateCSS, generateCSSModule } from './generator.js';
-export { oklchToRGB, extractOKLCHColors, scanThemeFiles, generateOKLCHMapModule } from './oklch.js';
 
 // Constants exports
 export {

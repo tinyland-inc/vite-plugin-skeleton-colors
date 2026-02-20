@@ -45,9 +45,6 @@
     "url": "https://gitlab.com/tinyland/tinyland.dev",
     "directory": "packages/vite-plugin-skeleton-colors"
   },
-  "dependencies": {
-    "culori": "^4.0.2"
-  },
   "devDependencies": {
     "@types/node": "^20.0.0",
     "typescript": "^5.0.0",
