@@ -1,10 +1,10 @@
-/**
- * Constants for Skeleton Color Utilities plugin
- */
+
+
+
 
 import type { ColorScale, PropertyTarget, ResolvedConfig, SkeletonColorConfig } from './types.js';
 
-/** Available color scales in Skeleton v4.8+ */
+
 export const COLOR_SCALES: ColorScale[] = [
   'primary',
   'secondary',
@@ -15,7 +15,7 @@ export const COLOR_SCALES: ColorScale[] = [
   'surface'
 ];
 
-/** CSS property targets */
+
 export const PROPERTY_TARGETS: PropertyTarget[] = [
   'bg',
   'text',
@@ -25,7 +25,7 @@ export const PROPERTY_TARGETS: PropertyTarget[] = [
   'placeholder'
 ];
 
-/** Skeleton v4.8 official pairing tokens */
+
 export const SKELETON_PAIRINGS = [
   '50-950',
   '100-900',
@@ -39,22 +39,22 @@ export const SKELETON_PAIRINGS = [
   '950-50'
 ] as const;
 
-/** Default virtual module IDs */
+
 export const DEFAULT_VIRTUAL_MODULE_IDS = {
   css: 'virtual:skeleton-colors'
 } as const;
 
-/** Default theme file paths to scan */
+
 export const DEFAULT_THEME_PATHS = [
   'src/lib/styles/themes',
   'src/lib/styles/tokens',
   'src/styles'
 ];
 
-/** File patterns to scan for theme files */
+
 export const THEME_FILE_PATTERNS = ['.css', '.postcss', '.scss'];
 
-/** Default configuration */
+
 export const DEFAULT_CONFIG: ResolvedConfig = {
   include: ['.svelte', '.html', '.jsx', '.tsx'],
   darkMode: true,
@@ -64,9 +64,9 @@ export const DEFAULT_CONFIG: ResolvedConfig = {
   themePaths: [...DEFAULT_THEME_PATHS]
 };
 
-/**
- * Resolve user config with defaults
- */
+
+
+
 export function resolveConfig(config: SkeletonColorConfig = {}): ResolvedConfig {
   return {
     include: config.include ?? DEFAULT_CONFIG.include,

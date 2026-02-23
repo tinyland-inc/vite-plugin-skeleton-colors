@@ -1,12 +1,12 @@
-/**
- * CSS generation for Skeleton color utilities
- */
+
+
+
 
 import type { ParsedUtility, PropertyTarget } from './types.js';
 
-/**
- * Get the CSS property name for a utility prefix
- */
+
+
+
 export function getCSSProperty(property: PropertyTarget): string {
   const map: Record<PropertyTarget, string> = {
     bg: 'background-color',
@@ -19,21 +19,21 @@ export function getCSSProperty(property: PropertyTarget): string {
   return map[property];
 }
 
-/**
- * Escape special characters for CSS class selectors
- */
+
+
+
 export function escapeClassName(className: string): string {
   return className.replace(/[/:]/g, '\\$&');
 }
 
-/**
- * Generate CSS for a single utility class using EXPLICIT light/dark selectors
- *
- * This approach is more reliable than light-dark() because:
- * 1. Works in all browsers (light-dark() requires Chrome 123+, Safari 17.5+)
- * 2. Uses Tailwind's .dark class pattern for consistent behavior
- * 3. Avoids CSS cascade issues with @theme inline processing
- */
+
+
+
+
+
+
+
+
 export function generatePairingCSS(parsed: ParsedUtility): string {
   const cssProperty = getCSSProperty(parsed.property);
   const escapedClass = escapeClassName(parsed.className);
@@ -42,7 +42,7 @@ export function generatePairingCSS(parsed: ParsedUtility): string {
 
   let css = '';
 
-  // Special handling for placeholder pseudo-element
+  
   if (parsed.property === 'placeholder') {
     if (parsed.hasOpacity) {
       css += `.${escapedClass}::placeholder {
@@ -64,7 +64,7 @@ export function generatePairingCSS(parsed: ParsedUtility): string {
     return css;
   }
 
-  // Special handling for divide (targets children)
+  
   if (parsed.property === 'divide') {
     if (parsed.hasOpacity) {
       css += `.${escapedClass} > :not([hidden]) ~ :not([hidden]) {
@@ -86,7 +86,7 @@ export function generatePairingCSS(parsed: ParsedUtility): string {
     return css;
   }
 
-  // Standard property - light mode (default)
+  
   if (parsed.hasOpacity) {
     css += `.${escapedClass} {
   ${cssProperty}: color-mix(in oklch, var(${lightVar}) ${(parsed.opacity! * 100).toFixed(0)}%, transparent);
@@ -108,10 +108,10 @@ export function generatePairingCSS(parsed: ParsedUtility): string {
   return css;
 }
 
-/**
- * Generate CSS for a single utility class using separate light/dark selectors
- * (Alternative mode without pairing tokens)
- */
+
+
+
+
 export function generateSeparateCSS(parsed: ParsedUtility, darkMode: boolean): string {
   const cssProperty = getCSSProperty(parsed.property);
   const lightVar = `--color-${parsed.scale}-${parsed.lightShade}`;
@@ -120,7 +120,7 @@ export function generateSeparateCSS(parsed: ParsedUtility, darkMode: boolean): s
 
   let css = '';
 
-  // Light mode (default)
+  
   if (parsed.hasOpacity) {
     css += `.${escapedClass} {
   ${cssProperty}: color-mix(in oklch, var(${lightVar}) ${(parsed.opacity! * 100).toFixed(0)}%, transparent);
@@ -133,7 +133,7 @@ export function generateSeparateCSS(parsed: ParsedUtility, darkMode: boolean): s
 `;
   }
 
-  // Dark mode variant
+  
   if (darkMode) {
     if (parsed.hasOpacity) {
       css += `.dark .${escapedClass} {
@@ -151,9 +151,9 @@ export function generateSeparateCSS(parsed: ParsedUtility, darkMode: boolean): s
   return css;
 }
 
-/**
- * Generate the complete CSS module content
- */
+
+
+
 export function generateCSSModule(
   extractedClasses: Map<string, ParsedUtility>,
   usePairingTokens: boolean,
@@ -171,12 +171,12 @@ export function generateCSSModule(
 
 `;
 
-  // Sort classes for consistent output
+  
   const sortedClasses = [...extractedClasses.entries()].sort((a, b) =>
     a[0].localeCompare(b[0])
   );
 
-  // Generate CSS for each extracted class
+  
   for (const [, parsed] of sortedClasses) {
     if (usePairingTokens) {
       css += generatePairingCSS(parsed);
