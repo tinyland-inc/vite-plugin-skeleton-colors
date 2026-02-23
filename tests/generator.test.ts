@@ -1,6 +1,6 @@
-/**
- * Tests for CSS generation
- */
+
+
+
 
 import { describe, it, expect } from 'vitest';
 import {
@@ -165,7 +165,7 @@ describe('generateCSSModule', () => {
 
     const css = generateCSSModule(classes, true, true);
 
-    // bg-surface should come before text-primary alphabetically
+    
     const bgIndex = css.indexOf('.bg-surface-100-900');
     const textIndex = css.indexOf('.text-primary-700-300');
     expect(bgIndex).toBeLessThan(textIndex);
